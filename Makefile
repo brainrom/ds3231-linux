@@ -1,13 +1,13 @@
 obj-m += ds3231.o
 
-export KROOT=/home/axel/ESCUELA/DIPLOMADO/linux
+KPATH :=/lib/modules/$(shell uname -r)/build
 
 allofit: modules
 modules:
-	@$(MAKE) -C $(KROOT) M=$(PWD) modules
+	@$(MAKE) -C $(KPATH) M=$(PWD) modules
 modules_install:
-	@$(MAKE) -C $(KROOT) M=$(PWD) modules_install
+	@$(MAKE) -C $(KPATH) M=$(PWD) modules_install
 kernel_clean:
-	@$(MAKE) -C $(KROOT) M=$(PWD) clean
+	@$(MAKE) -C $(KPATH) M=$(PWD) clean
 clean: kernel_clean
 	rm -rf Module.symvers modules.order

@@ -167,7 +167,7 @@ static const struct rtc_class_ops ds3231_rtc_ops = {
 	.set_time = ds3231_write_time,
 	.ioctl = ds3231_ioctl
 };
-static int ds3231_probe(struct i2c_client* client, const struct i2c_device_id* id){
+static int ds3231_probe(struct i2c_client* client){
 	s32 ret;
 	u8 reg;
 	struct rtc_device *rtc;
@@ -225,8 +225,8 @@ static int ds3231_probe(struct i2c_client* client, const struct i2c_device_id* i
 	}
 	return 0;
 }
-static int ds3231_remove(struct i2c_client* client){
-	return 0;
+static void ds3231_remove(struct i2c_client* client){
+	return;
 }
 static const struct i2c_device_id ds3231_rtc_id[] = {
 	{"ds3231", 0},
